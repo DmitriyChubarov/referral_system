@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация по телефону</title>
+</head>
+<body>
+    <h2>Введите номер телефона</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="phone_number" placeholder="+79991234567" required>
+        <button type="submit">Отправить</button>
+    </form>
+
+    {% if code %}
+        <p><strong>Код для авторизации:</strong> {{ code }}</p>
+    {% endif %}
+</body>
+</html>
