@@ -123,7 +123,7 @@ def profile_view(request):
             return render(request, 'profile.html', {'user': user, 'error': 'Вы уже вводили реферальный код'}) #удалить наверное
         if user.invite_code == invited_code:
             return render(request, 'profile.html', {'user': user, 'error': 'Нельзя вводить свой собственный код'}) 
-        
+
         user.invited_code = invited_code
         user.save()
         

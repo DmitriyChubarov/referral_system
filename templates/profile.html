@@ -19,6 +19,9 @@
             <button type="submit">Подтвердить</button>
     </form>
     {% endif %}
+    {% if error %}
+        {{ error }}
+    {% endif %}
     <h3> Список твоих рефералов:</h3>
     {% if users %}
         <ul>
