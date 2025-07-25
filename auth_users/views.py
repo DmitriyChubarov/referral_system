@@ -107,6 +107,8 @@ def ConfirmAuthCodeHTML(request):
             user.invite_code = generate_invite_code()
             user.save()
 
+        Token.objects.get_or_create(user=user)
+
         login(request, user)
         
         return redirect('profile_html')
