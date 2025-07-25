@@ -8,12 +8,11 @@
     <h2>Введите номер телефона</h2>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="phone_number" placeholder="+79991234567" required>
+        <input type="text" name="phone_number" placeholder="89991234567" required>
         <button type="submit">Отправить</button>
     </form>
-
-    {% if code %}
-        <p><strong>Код для авторизации:</strong> {{ code }}</p>
+    {% if error %}
+        {{ error }}
     {% endif %}
 </body>
 </html>

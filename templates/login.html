@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    {% if code_cache %}
+    {{ code_cache }}
+    <form method="post">
+        {% csrf_token %}
+            <input type="text" name="code" placeholder="Код из SMS" required>
+            <button type="submit">Подтвердить</button>
+    </form>
+    {% endif %}
+    {% if error %}
+        {{ error }}
+    {% endif %}
+</body>
+</html>

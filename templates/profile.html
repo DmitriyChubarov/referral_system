@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    {% if user %}
+    <h3>Номер телефона: {{ user.phone_number }}</h3>
+    <h3>Твой инвайт код: {{ user.invite_code }}</h3>
+    {% endif %}
+    {% if user.invited_code %}
+    <h3>Введенный реферальный код: {{ user.invited_code }}</h3>
+    {% else %}
+    Ниже ввод реферального кода:
+    <form method="post">
+        {% csrf_token %}
+            <input type="text" name="invited_code" placeholder="XXXXXX" required>
+            <button type="submit">Подтвердить</button>
+    </form>
+    {% endif %}
+    <h3> Список твоих рефералов:</h3>
+    {% if users %}
+        <ul>
+        {% for user_ref in users %}
+            <li>{{ user_ref.phone_number }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        рефералов пока нет
+    {% endif %}
+</body>
+</html>
