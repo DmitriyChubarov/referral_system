@@ -1,3 +1,4 @@
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from django.urls import path
 from . import views
 
@@ -12,4 +13,14 @@ urlpatterns = [
     path('auth_code_html/',views.SendAuthCodeHTML, name='auth_code_html'),
     path('login_html/',views.ConfirmAuthCodeHTML, name='login_html'),
     path('profile_html/',views.profile_view, name='profile_html'),
+
+    # OpenAPI schema (JSON)
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+
+    # Swagger UI
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # ReDoc UI
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
+

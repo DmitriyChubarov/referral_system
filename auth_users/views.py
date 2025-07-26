@@ -100,7 +100,7 @@ def ConfirmAuthCodeHTML(request):
             return render(request, 'login.html', {'code_cache': code_cache, 'error': 'Код не отправлен'})
         if not code_cache or code != code_cache:
             return render(request, 'login.html', {'code_cache': code_cache, 'error': 'Код не подходит'})
-        
+
         user, created = user_create(phone)
 
         if created:
@@ -125,7 +125,11 @@ def profile_view(request):
             return render(request, 'profile.html', {'user': user, 'error': 'Вы уже вводили реферальный код'}) #удалить наверное
         if user.invite_code == invited_code:
             return render(request, 'profile.html', {'user': user, 'error': 'Нельзя вводить свой собственный код'}) 
-
+        try:
+            User.objects.get(invite_code=invited_code)
+        except User.DoesNotExist:
+            return render(request, 'profile.html', {'user': user, 'error': 'Реферальный код не существует'}) 
+        
         user.invited_code = invited_code
         user.save()
         
