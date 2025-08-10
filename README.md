@@ -36,7 +36,7 @@ psql postgres
 ```
 ```sql
 CREATE DATABASE ref_sys;
-CREATE USER weather WITH PASSWORD 'ref_sys';
+CREATE USER ref_sys WITH PASSWORD 'ref_sys';
 GRANT ALL PRIVILEGES ON DATABASE ref_sys to ref_sys;
 \q
 ```
